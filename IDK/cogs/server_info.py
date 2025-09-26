@@ -3,7 +3,6 @@ from discord.ext import commands
 from discord import app_commands
 from config_info import stored_channel_ids  
 
-
 class ServerHelpCog(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
