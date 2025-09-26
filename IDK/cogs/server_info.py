@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands
 from discord import app_commands
-# Import the shared dict from config_info.py
 from config_info import stored_channel_ids  
 
 
@@ -16,12 +15,10 @@ class ServerHelpCog(commands.Cog):
     async def server_help(self, interaction: discord.Interaction):
         guild = interaction.guild
 
-        # Resolve stored IDs to channel objects
         info_channel = guild.get_channel(stored_channel_ids.get("information", 0))
         announce_channel = guild.get_channel(stored_channel_ids.get("announcement", 0))
         support_channel = guild.get_channel(stored_channel_ids.get("support", 0))
 
-        # Prepare embed
         embed = discord.Embed(
             title="Server Help Directory",
             description="Use the buttons below to quickly jump to important channels.",
@@ -31,7 +28,6 @@ class ServerHelpCog(commands.Cog):
         view = discord.ui.View()
         has_buttons = False
         
-        # Add fields and buttons only if the channel is configured
         if info_channel:
             embed.add_field(name="Information", value=info_channel.mention, inline=False)
             view.add_item(discord.ui.Button(
@@ -56,8 +52,6 @@ class ServerHelpCog(commands.Cog):
             ))
             has_buttons = True
             
-
-        # Send response
         if has_buttons:
             await interaction.response.send_message(embed=embed, view=view, ephemeral=True)
         else:
