@@ -1,0 +1,8 @@
+{
+  "prefix": "!",
+  "token": "Bot Code",
+  "default_modules": [
+    "config_info",
+    "server_info"
+  ]
+}
